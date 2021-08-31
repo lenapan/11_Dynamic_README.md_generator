@@ -1,5 +1,5 @@
 const fs = require("fs");
-const path = require("path");
+const path = require("path"); //unused
 const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generateMarkdown");
 
@@ -50,13 +50,17 @@ const questions = [
 
 // function to write README file
 function writeToFile(fileName, data) {
-    // const filename = `${questions[1].toLowerCase().split(' ').join('')}.md`;
+    fs.writeFileSync(fileName, data); 
 }
 
 // function to initialize program
 function init() {
-    inquirer.prompt(questions);  
+    inquirer.prompt(questions)
+   .then((response) => {
+            console.log("README is Ready for Preview.");
+            writeToFile("README.md", generateMarkdown(response));
+        })
 }
 
 // function call to initialize program
-init();
+init(); 
