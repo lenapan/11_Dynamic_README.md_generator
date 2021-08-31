@@ -5,26 +5,57 @@ const generateMarkdown = require("./utils/generateMarkdown");
 
 // array of questions for user
 const questions = [
-    "What is your email address?",
-    "What is your project's name?",
-    "Write a short description of your project",
-    "What kind of license does your project require?",
-    "What command should be run to install dependencies?",
-    "What command should be run to run tests?",
-    "What does the user need to know about using the repo",
-    "What does the user need to know about contributing to the repo?"
+    {   
+        type: "input",
+        name: "contact",
+        message: "What is your email address?"
+    },
+    {   
+        type: "input",
+        name: "project",
+        message: "What is your project's name?"
+    },
+    {   
+        type: "input",
+        name: "summary",
+        message:  "Write a short description of your project"
+    },
+    {   
+        type: "list",
+        name: "license",
+        message:  "What kind of license does your project require?",
+        choices: ['None','MIT','Apache 2.0','GPL 3.0','BSD 3'],
+    },
+    {   
+        type: "input",
+        name: "dependencies",
+        message:  "What is the command to install dependencies?"
+    },
+    {   
+        type: "input",
+        name: "testRun",
+        message:  "What command should be run to run tests?"
+    },
+    {   
+        type: "input",
+        name: "repoUsage",
+        message:  "What does the user need to know about using the repo"
+    },
+    {   
+        type: "input",
+        name: "contribution",
+        message:   "What does the user need to know about contributing to the repo?"
+    }
 ];
 
 // function to write README file
 function writeToFile(fileName, data) {
-    const filename = `${questions[1].toLowerCase().split(' ').join('')}.md`;
+    // const filename = `${questions[1].toLowerCase().split(' ').join('')}.md`;
 }
 
 // function to initialize program
 function init() {
-    for (var i = 0; i < questions.length; i++){
-        inquirer.prompt(questions[i]);
-    }
+    inquirer.prompt(questions);  
 }
 
 // function call to initialize program
